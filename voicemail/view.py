@@ -16,7 +16,6 @@ from .form import VoicemailForm
 class VoicemailSchema(BaseSchema):
 
     context = fields.String(default='default')
-    number = fields.String(attribute='number')
 
     class Meta:
         fields = ('name',
@@ -26,6 +25,11 @@ class VoicemailSchema(BaseSchema):
                   'email',
                   'password',
                   'timezone',
+                  'max_messages',
+                  'ask_password',
+                  'attach_audio',
+                  'delete_messages',
+                  'enabled',
                   'language')
 
 

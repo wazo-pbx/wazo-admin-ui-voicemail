@@ -1,0 +1,2 @@
+recursive-include voicemail/templates *
+recursive-include voicemail/static *

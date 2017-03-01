@@ -8,7 +8,6 @@ from wtforms.fields import SubmitField
 from wtforms.fields import TextField
 from wtforms.fields import SelectField
 from wtforms.fields import IntegerField
-from wtforms.fields import PasswordField
 from wtforms.fields.html5 import EmailField
 
 from wtforms.validators import InputRequired
@@ -19,7 +18,7 @@ class VoicemailForm(FlaskForm):
     name = TextField('Name', [InputRequired()])
     number = IntegerField('Number', [InputRequired()])
     email = EmailField('Email', validators=[InputRequired(), Email()])
-    password = PasswordField('Password')
+    password = TextField('Password')
     timezone = SelectField('Timezone',
                            validators=[InputRequired()],
                            choices=[

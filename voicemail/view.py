@@ -13,30 +13,26 @@ from wazo_admin_ui.helpers.mallow import BaseSchema, BaseAggregatorSchema, pre_d
 from .form import VoicemailForm
 
 
-class UserSchema(BaseSchema):
-
-    class Meta:
-        fields = ('uuid',)
-
-
 class VoicemailSchema(BaseSchema):
+
+    context = fields.String(default='default')
+    number = fields.String(attribute='number')
 
     class Meta:
         fields = ('name',
-                  'number')
+                  'number',
+                  'context',
+                  'users',
+                  'email',
+                  'password',
+                  'timezone',
+                  'language')
 
 
 class AggregatorSchema(BaseAggregatorSchema):
     _main_resource = 'voicemail'
 
     voicemail = fields.Nested(VoicemailSchema)
-    users = fields.Nested(UserSchema, many=True)
-
-    @pre_dump
-    def add_envelope(self, form):
-        users = [{'uuid': uuid} for uuid in form.users.data]
-        return {'switchboard': form,
-                'users': users}
 
 
 class VoicemailView(BaseView):
@@ -55,10 +51,13 @@ class VoicemailView(BaseView):
         return form
 
     def _map_resources_to_form(self, resources):
-        data = self.schema().load(resources).data
-        users = self._user_list(resources['voicemail']['users'])
+        users = self._get_user(resources['voicemail']['users'])
         return self.form(data=resources['voicemail'], users=users)
 
     def _user_list(self, users):
         return [(user['uuid'], u"{} {}".format(user['firstname'], user['lastname']))
                  for user in users]
+
+    def _get_user(self, users):
+        for user in users:
+            return user['uuid']

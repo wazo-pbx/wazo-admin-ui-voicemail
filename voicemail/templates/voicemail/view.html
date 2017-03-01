@@ -15,7 +15,7 @@
             <h3 class="box-title">Voicemail {{ resources.voicemail.name }}</h3>
             <div class="box-tools"></div>
           </div>
-          <form class="form-horizontal" method="post" action="{{ url_for('.VoicemailView:put', id=resources.voicemail.uuid) }}">
+          <form class="form-horizontal" method="post" action="{{ url_for('.VoicemailView:put', id=resources.voicemail.id) }}">
             <div class="box-body">
               {{ form.csrf_token }}
 	      {{ render_field(form.name) }}

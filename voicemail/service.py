@@ -7,11 +7,11 @@ from wazo_admin_ui.helpers.service import BaseConfdService
 
 class VoicemailService(BaseConfdService):
 
-    resource = 'voicemail'
-    confd_resource = 'voicemails'
+    resource_name = 'voicemail'
+    resource_confd = 'voicemails'
 
     def create(self, resources):
-        voicemail = resources.get(self.resource)
+        voicemail = resources.get(self.resource_name)
         user = voicemail.get('users')
 
         voicemail = self._confd.voicemails.create(voicemail)

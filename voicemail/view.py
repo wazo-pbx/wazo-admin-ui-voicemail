@@ -8,7 +8,7 @@ from flask_menu.classy import classy_menu_item
 from marshmallow import fields
 
 from wazo_admin_ui.helpers.classful import BaseView
-from wazo_admin_ui.helpers.mallow import BaseSchema, BaseAggregatorSchema, pre_dump
+from wazo_admin_ui.helpers.mallow import BaseSchema, BaseAggregatorSchema, extract_form_fields
 
 from .form import VoicemailForm
 
@@ -18,19 +18,7 @@ class VoicemailSchema(BaseSchema):
     context = fields.String(default='default')
 
     class Meta:
-        fields = ('name',
-                  'number',
-                  'context',
-                  'users',
-                  'email',
-                  'password',
-                  'timezone',
-                  'max_messages',
-                  'ask_password',
-                  'attach_audio',
-                  'delete_messages',
-                  'enabled',
-                  'language')
+        fields = extract_form_fields(VoicemailForm)
 
 
 class AggregatorSchema(BaseAggregatorSchema):
@@ -60,7 +48,7 @@ class VoicemailView(BaseView):
 
     def _user_list(self, users):
         return [(user['uuid'], u"{} {}".format(user['firstname'], user['lastname']))
-                 for user in users]
+                for user in users]
 
     def _get_user(self, users):
         for user in users:

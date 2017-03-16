@@ -37,19 +37,9 @@ class VoicemailView(BaseView):
     def index(self):
         return super(VoicemailView, self).index()
 
-    def _populate_form(self, form):
-        users = self.service.get_users()
-        form.users.choices = self._user_list(users['items'])
-        return form
-
     def _map_resources_to_form(self, resources):
         users = self._get_user(resources['voicemail']['users'])
         return self.form(data=resources['voicemail'], users=users)
 
-    def _user_list(self, users):
-        return [(user['uuid'], u"{} {}".format(user['firstname'], user['lastname']))
-                for user in users]
-
     def _get_user(self, users):
-        for user in users:
-            return user['uuid']
+        return [user['uuid'] for user in users]

@@ -35,9 +35,18 @@
           {{ render_field(form.email) }}
           {{ render_field(form.language) }}
           {{ render_field(form.timezone) }}
-          {{ render_field(form.users) }}
+          {{ render_field(form.users, class_="select2") }}
         {% endcall %}
       {% endcall %}
     {% endcall %}
   </section>
+{% endblock %}
+
+{% block additional_js %}
+  {% set list_url = url_for('destination.UserDestinationView:uuid_list_json') %}
+  <script>
+    $(document).ready(function() {
+      create_default_select2('{{ list_url }}');
+    });
+  </script>
 {% endblock %}

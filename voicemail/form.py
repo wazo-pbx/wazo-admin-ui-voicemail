@@ -32,12 +32,12 @@ class VoicemailForm(FlaskForm):
                                ('eu-fr', 'Europe/Paris')
                            ])
     language = SelectField('Language',
-                          validators=[InputRequired()],
-                          choices = [
+                           validators=[InputRequired()],
+                           choices=[
                                ('fr_FR', 'French'),
                                ('fr_CA', 'French Canadian'),
                                ('en_US', 'English'),
-                          ])
+                           ])
     users = SelectField('Users', choices=[])
     max_messages = TextField('Maximum messages')
     ask_password = BooleanField('Ask for password')

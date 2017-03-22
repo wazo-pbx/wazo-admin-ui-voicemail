@@ -13,6 +13,8 @@ from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired
 from wtforms.validators import Email
 
+from wazo_admin_ui.helpers.destination import DestinationHiddenField
+
 
 class VoicemailForm(FlaskForm):
     name = TextField('Name', [InputRequired()])
@@ -45,3 +47,12 @@ class VoicemailForm(FlaskForm):
     delete_messages = BooleanField('Delete message after notification')
     enabled = BooleanField('Activated')
     submit = SubmitField('Submit')
+
+
+class VoicemailDestinationForm(FlaskForm):
+    setted_value_template = '{voicemail_name}'
+
+    voicemail_id = SelectField('Voicemail', choices=[])
+    greeting = SelectField('Greeting', choices=[('busy', 'Busy'), ('unavailable', 'Unavailable')])
+    skip_instructions = BooleanField('Skip instructions')
+    voicemail_name = DestinationHiddenField()

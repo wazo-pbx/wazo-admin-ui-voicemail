@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from flask_menu.classy import classy_menu_item
 from marshmallow import fields
 
-from wazo_admin_ui.helpers.classful import BaseView
+from wazo_admin_ui.helpers.classful import BaseView, BaseDestinationView
 from wazo_admin_ui.helpers.mallow import BaseSchema, BaseAggregatorSchema, extract_form_fields
 
 from .form import VoicemailForm
@@ -43,3 +43,12 @@ class VoicemailView(BaseView):
 
     def _get_user(self, users):
         return [user['uuid'] for user in users]
+
+
+class VoicemailDestinationView(BaseDestinationView):
+
+    def list_json(self):
+        params = self._extract_params()
+        voicemails = self.service.list(**params)
+        results = [{'id': vm['id'], 'text': vm['name']} for vm in voicemails['items']]
+        return self._select2_response(results, voicemails['total'], params)

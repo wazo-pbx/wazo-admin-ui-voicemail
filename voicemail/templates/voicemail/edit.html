@@ -19,12 +19,8 @@
         {{ render_field(form.attach_audio) }}
         {{ render_field(form.delete_messages) }}
         {{ render_field(form.enabled) }}
-        {{ render_field(form.users) }}
+        {{ render_field(form.users, data_listing_href=url_for(listing_urls['uuid_user'])) }}
       {% endcall %}
     {% endcall %}
   {% endcall %}
-{% endblock %}
-
-{% block additional_js %}
-  {% include 'voicemail/js.html' %}
 {% endblock %}

@@ -39,10 +39,22 @@ class VoicemailView(BaseView):
 
     def _map_resources_to_form(self, resources):
         users = self._get_user(resources['voicemail']['users'])
-        return self.form(data=resources['voicemail'], users=users)
+        form = self.form(data=resources['voicemail'], users=users)
+        form.users.choices = self._build_setted_choices(resources['voicemail']['users'])
+        return form
 
     def _get_user(self, users):
         return [user['uuid'] for user in users]
+
+    def _build_setted_choices(self, users):
+        results = []
+        for user in users:
+            if user.get('lastname'):
+                text = '{} {}'.format(user.get('firstname'), user['lastname'])
+            else:
+                text = user.get('firstname')
+            results.append((user['uuid'], text))
+        return results
 
 
 class VoicemailDestinationView(BaseDestinationView):

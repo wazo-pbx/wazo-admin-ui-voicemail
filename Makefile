@@ -4,6 +4,6 @@ install:
 	systemctl restart wazo-admin-ui
 
 uninstall:
-	pip uninstall wazo-admin-ui-switchboard
+	pip uninstall wazo-admin-ui-voicemail
 	rm /etc/wazo-admin-ui/conf.d/voicemail.yml
 	systemctl restart wazo-admin-ui

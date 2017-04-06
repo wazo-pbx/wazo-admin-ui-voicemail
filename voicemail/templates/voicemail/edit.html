@@ -5,21 +5,23 @@
 {% endblock %}
 
 {% block content %}
-  {% call build_form_containers('Voicemail' ~ ' ' ~ resources.voicemail.name, 'envelope') %}
-    {% call build_form(action=url_for('.VoicemailView:put', id=resources.voicemail.id)) %}
-      {% call add_default_fields(form=form, submit_value="Update") %}
-        {{ render_field(form.name) }}
-        {{ render_field(form.number) }}
-        {{ render_field(form.password) }}
-        {{ render_field(form.email) }}
-        {{ render_field(form.language) }}
-        {{ render_field(form.timezone) }}
-        {{ render_field(form.max_messages) }}
-        {{ render_field(form.ask_password) }}
-        {{ render_field(form.attach_audio) }}
-        {{ render_field(form.delete_messages) }}
-        {{ render_field(form.enabled) }}
-        {{ render_field(form.users, data_listing_href=url_for(listing_urls['uuid_user'])) }}
+  {% call build_section_row() %}
+    {% call build_form_box('Voicemail', resources.voicemail.name, 'envelope') %}
+      {% call build_form(action=url_for('.VoicemailView:put', id=resources.voicemail.id)) %}
+        {% call add_default_fields(form=form, submit_value="Update") %}
+          {{ render_field(form.name) }}
+          {{ render_field(form.number) }}
+          {{ render_field(form.password) }}
+          {{ render_field(form.email) }}
+          {{ render_field(form.language) }}
+          {{ render_field(form.timezone) }}
+          {{ render_field(form.max_messages) }}
+          {{ render_field(form.ask_password) }}
+          {{ render_field(form.attach_audio) }}
+          {{ render_field(form.delete_messages) }}
+          {{ render_field(form.enabled) }}
+          {{ render_field(form.users, data_listing_href=url_for(listing_urls['uuid_user'])) }}
+        {% endcall %}
       {% endcall %}
     {% endcall %}
   {% endcall %}

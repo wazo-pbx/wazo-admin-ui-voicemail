@@ -18,13 +18,12 @@ class Plugin(object):
 
     def load(self, dependencies):
         core = dependencies['flask']
-        config = dependencies['config']
 
-        VoicemailView.service = VoicemailService(config['confd'])
+        VoicemailView.service = VoicemailService()
         VoicemailView.register(voicemail, route_base='/voicemails')
         register_flaskview(voicemail, VoicemailView)
 
-        VoicemailDestinationView.service = VoicemailService(config['confd'])
+        VoicemailDestinationView.service = VoicemailService()
         VoicemailDestinationView.register(voicemail, route_base='/voicemails_listing')
 
         register_destination_form('voicemail', 'Voicemail', VoicemailDestinationForm)

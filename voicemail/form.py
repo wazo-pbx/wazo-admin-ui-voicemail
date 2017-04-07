@@ -50,7 +50,7 @@ class VoicemailForm(FlaskForm):
 
 
 class VoicemailDestinationForm(FlaskForm):
-    setted_value_template = '{voicemail_name}'
+    setted_value_template = u'{voicemail_name}'
 
     voicemail_id = SelectField('Voicemail', choices=[])
     greeting = SelectField('Greeting', choices=[('busy', 'Busy'), ('unavailable', 'Unavailable')])

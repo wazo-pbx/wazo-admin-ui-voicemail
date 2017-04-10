@@ -2,22 +2,19 @@
 # Copyright 2017 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0+
 
-from flask_wtf import FlaskForm
-
-from wtforms.fields import SubmitField
-from wtforms.fields import StringField
-from wtforms.fields import SelectField
-from wtforms.fields import BooleanField
+from wtforms.fields import SubmitField, StringField, SelectField, BooleanField
 from wtforms.fields.html5 import EmailField
 
 from wtforms.validators import InputRequired
 from wtforms.validators import Email
 
 from wazo_admin_ui.helpers.destination import DestinationHiddenField
+from wazo_admin_ui.helpers.form import BaseForm
 
 
-class VoicemailForm(FlaskForm):
+class VoicemailForm(BaseForm):
     name = StringField('Name', [InputRequired()])
+    context = StringField(default='default')
     number = StringField('Number', [InputRequired()])
     email = EmailField('Email', validators=[InputRequired(), Email()])
     password = StringField('Password')
@@ -49,7 +46,7 @@ class VoicemailForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class VoicemailDestinationForm(FlaskForm):
+class VoicemailDestinationForm(BaseForm):
     setted_value_template = u'{voicemail_name}'
 
     voicemail_id = SelectField('Voicemail', choices=[])

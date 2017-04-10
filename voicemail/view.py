@@ -6,34 +6,17 @@ from __future__ import unicode_literals
 
 from flask import jsonify, request
 from flask_menu.classy import classy_menu_item
-from marshmallow import fields
 
 from wazo_admin_ui.helpers.classful import BaseView, LoginRequiredView
 from wazo_admin_ui.helpers.classful import extract_select2_params, build_select2_response
-from wazo_admin_ui.helpers.mallow import BaseSchema, BaseAggregatorSchema, extract_form_fields
 
 from .form import VoicemailForm
-
-
-class VoicemailSchema(BaseSchema):
-
-    context = fields.String(default='default')
-
-    class Meta:
-        fields = extract_form_fields(VoicemailForm)
-
-
-class AggregatorSchema(BaseAggregatorSchema):
-    _main_resource = 'voicemail'
-
-    voicemail = fields.Nested(VoicemailSchema)
 
 
 class VoicemailView(BaseView):
 
     form = VoicemailForm
     resource = 'voicemail'
-    schema = AggregatorSchema
 
     @classy_menu_item('.voicemails', 'Voicemails', order=4, icon="envelope")
     def index(self):
@@ -57,6 +40,16 @@ class VoicemailView(BaseView):
                 text = user.get('firstname')
             results.append((user['uuid'], text))
         return results
+
+    def _map_form_to_resources(self, form, form_id=None):
+        resources = {'voicemail': form.to_dict()}
+        if form_id:
+            resources['voicemail']['id'] = form_id
+        return resources
+
+    def _map_resources_to_form_errors(self, form, resources):
+        form.populate_errors(resources.get('voicemail', {}))
+        return form
 
 
 class VoicemailDestinationView(LoginRequiredView):

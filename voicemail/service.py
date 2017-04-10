@@ -12,7 +12,7 @@ class VoicemailService(BaseConfdService):
     resource_confd = 'voicemails'
 
     def create(self, resources):
-        voicemail = resources.get(self.resource_name)
+        voicemail = resources.get('voicemail')
         user = voicemail.get('users')
 
         voicemail = confd.voicemails.create(voicemail)
@@ -21,7 +21,7 @@ class VoicemailService(BaseConfdService):
             self.add_voicemail_to_user(voicemail.get('id'), user)
 
     def update(self, resources):
-        voicemail = resources.get(self.resource)
+        voicemail = resources.get('voicemail')
         user = voicemail.get('users')
 
         if user:

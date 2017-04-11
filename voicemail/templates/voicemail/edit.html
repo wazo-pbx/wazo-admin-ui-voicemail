@@ -6,8 +6,8 @@
 
 {% block content %}
   {% call build_section_row() %}
-    {% call build_form_box('Voicemail', resources.voicemail.name, 'envelope') %}
-      {% call build_form(action=url_for('.VoicemailView:put', id=resources.voicemail.id)) %}
+    {% call build_form_box('Voicemail', resource.name, 'envelope') %}
+      {% call build_form(action=url_for('.VoicemailView:put', id=resource.id)) %}
         {% call add_default_fields(form=form, submit_value="Update") %}
           {{ render_field(form.name) }}
           {{ render_field(form.number) }}

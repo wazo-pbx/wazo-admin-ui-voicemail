@@ -22,10 +22,10 @@ class VoicemailView(BaseView):
     def index(self):
         return super(VoicemailView, self).index()
 
-    def _map_resources_to_form(self, resources):
-        users = self._get_user(resources['voicemail']['users'])
-        form = self.form(data=resources['voicemail'], users=users)
-        form.users.choices = self._build_setted_choices(resources['voicemail']['users'])
+    def _map_resources_to_form(self, resource):
+        users = self._get_user(resource['users'])
+        form = self.form(data=resource, users=users)
+        form.users.choices = self._build_setted_choices(resource['users'])
         return form
 
     def _get_user(self, users):
@@ -40,12 +40,6 @@ class VoicemailView(BaseView):
                 text = user.get('firstname')
             results.append((user['uuid'], text))
         return results
-
-    def _map_form_to_resources(self, form, form_id=None):
-        resources = {'voicemail': form.to_dict()}
-        if form_id:
-            resources['voicemail']['id'] = form_id
-        return resources
 
     def _map_resources_to_form_errors(self, form, resources):
         form.populate_errors(resources.get('voicemail', {}))

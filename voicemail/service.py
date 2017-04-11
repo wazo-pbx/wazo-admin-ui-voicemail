@@ -8,11 +8,10 @@ from wazo_admin_ui.helpers.confd import confd
 
 class VoicemailService(BaseConfdService):
 
-    resource_name = 'voicemail'
     resource_confd = 'voicemails'
 
-    def create(self, resources):
-        voicemail = resources.get('voicemail')
+    def create(self, resource):
+        voicemail = resource
         user = voicemail.get('users')
 
         voicemail = confd.voicemails.create(voicemail)
@@ -20,8 +19,8 @@ class VoicemailService(BaseConfdService):
         if user:
             self.add_voicemail_to_user(voicemail.get('id'), user)
 
-    def update(self, resources):
-        voicemail = resources.get('voicemail')
+    def update(self, resource):
+        voicemail = resource
         user = voicemail.get('users')
 
         if user:

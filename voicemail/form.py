@@ -16,7 +16,8 @@ class VoicemailForm(BaseForm):
     context = StringField(default='default')
     number = StringField('Number', [InputRequired(), Length(max=40), Regexp(r'^[0-9]+$')])
     email = EmailField('Email', validators=[Length(max=80)])
-    password = StringField('Password', [Length(max=80), Regexp(r'^[0-9]+$')])
+    password = StringField('Password', [Length(max=80), Regexp(r'^[0-9]+$')], render_kw={'type': 'password',
+                                                                                         'data_toggle': 'password'})
     timezone = SelectField('Timezone',
                            validators=[InputRequired()],
                            choices=[

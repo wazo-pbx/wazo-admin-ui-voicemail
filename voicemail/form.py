@@ -3,21 +3,20 @@
 # SPDX-License-Identifier: GPL-3.0+
 
 from wtforms.fields import SubmitField, StringField, SelectField, BooleanField
-from wtforms.fields.html5 import EmailField
+from wtforms.fields.html5 import EmailField, IntegerField
 
-from wtforms.validators import InputRequired
-from wtforms.validators import Email
+from wtforms.validators import InputRequired, Length, NumberRange, Regexp
 
 from wazo_admin_ui.helpers.destination import DestinationHiddenField
 from wazo_admin_ui.helpers.form import BaseForm
 
 
 class VoicemailForm(BaseForm):
-    name = StringField('Name', [InputRequired()])
+    name = StringField('Name', [InputRequired(), Length(max=80)])
     context = StringField(default='default')
-    number = StringField('Number', [InputRequired()])
-    email = EmailField('Email', validators=[InputRequired(), Email()])
-    password = StringField('Password')
+    number = StringField('Number', [InputRequired(), Length(max=40), Regexp(r'^[0-9]+$')])
+    email = EmailField('Email', validators=[Length(max=80)])
+    password = StringField('Password', [Length(max=80), Regexp(r'^[0-9]+$')])
     timezone = SelectField('Timezone',
                            validators=[InputRequired()],
                            choices=[
@@ -38,7 +37,7 @@ class VoicemailForm(BaseForm):
                                ('en_US', 'English'),
                            ])
     users = SelectField('Users', choices=[])
-    max_messages = StringField('Maximum messages')
+    max_messages = IntegerField('Maximum messages', [NumberRange(min=0)])
     ask_password = BooleanField('Ask for password')
     attach_audio = BooleanField('Attach audio')
     delete_messages = BooleanField('Delete message after notification')
@@ -49,7 +48,7 @@ class VoicemailForm(BaseForm):
 class VoicemailDestinationForm(BaseForm):
     setted_value_template = u'{voicemail_name}'
 
-    voicemail_id = SelectField('Voicemail', choices=[])
+    voicemail_id = SelectField('Voicemail', [InputRequired()], choices=[])
     greeting = SelectField('Greeting', choices=[('busy', 'Busy'), ('unavailable', 'Unavailable')])
     skip_instructions = BooleanField('Skip instructions')
     voicemail_name = DestinationHiddenField()

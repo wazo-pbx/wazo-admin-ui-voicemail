@@ -20,8 +20,8 @@
           {{ render_field(form.attach_audio) }}
           {{ render_field(form.delete_messages) }}
           {{ render_field(form.enabled) }}
-          {{ render_field(form.users, with_label=false) }}
           {{ render_field(form.user_uuid, data_listing_href=url_for(listing_urls['uuid_user'])) }}
+          {{ render_field(form.users, with_label=false) }}
         {% endcall %}
       {% endcall %}
     {% endcall %}

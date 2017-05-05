@@ -35,7 +35,6 @@
           {{ render_field(form.email) }}
           {{ render_field(form.language) }}
           {{ render_field(form.timezone) }}
-          {{ render_field(form.users, with_label=false) }}
           {{ render_field(form.user_uuid, data_listing_href=url_for(listing_urls['uuid_user'])) }}
         {% endcall %}
       {% endcall %}

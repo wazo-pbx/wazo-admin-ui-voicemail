@@ -2,13 +2,25 @@
 # Copyright 2017 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0+
 
-from wtforms.fields import SubmitField, StringField, SelectField, BooleanField
+from wtforms.fields import (FieldList,
+                            FormField,
+                            HiddenField,
+                            SubmitField,
+                            StringField,
+                            SelectField,
+                            BooleanField)
 from wtforms.fields.html5 import EmailField, IntegerField
 
 from wtforms.validators import InputRequired, Length, NumberRange, Regexp
 
 from wazo_admin_ui.helpers.destination import DestinationHiddenField
 from wazo_admin_ui.helpers.form import BaseForm
+
+
+class UserForm(BaseForm):
+    uuid = HiddenField()
+    firstname = HiddenField()
+    lastname = HiddenField()
 
 
 class VoicemailForm(BaseForm):
@@ -37,7 +49,8 @@ class VoicemailForm(BaseForm):
                                ('fr_CA', 'French Canadian'),
                                ('en_US', 'English'),
                            ])
-    users = SelectField('Users', choices=[])
+    users = FieldList(FormField(UserForm))
+    user_uuid = SelectField('Users', choices=[])
     max_messages = IntegerField('Maximum messages', [NumberRange(min=0)])
     ask_password = BooleanField('Ask for password')
     attach_audio = BooleanField('Attach audio')

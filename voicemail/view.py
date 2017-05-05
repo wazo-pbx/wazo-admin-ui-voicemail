@@ -23,23 +23,32 @@ class VoicemailView(BaseView):
         return super(VoicemailView, self).index()
 
     def _map_resources_to_form(self, resource):
-        users = self._get_user(resource['users'])
-        form = self.form(data=resource, users=users)
-        form.users.choices = self._build_setted_choices(resource['users'])
+        users = [user['uuid'] for user in resource['users']]
+        resource['user_uuid'] = users
+        form = self.form(data=resource)
         return form
 
-    def _get_user(self, users):
-        return [user['uuid'] for user in users]
+    def _populate_form(self, form):
+        form.user_uuid.choices = self._build_setted_choices_users(form.users)
+        return form
 
-    def _build_setted_choices(self, users):
+    def _build_setted_choices_users(self, users):
         results = []
         for user in users:
-            if user.get('lastname'):
-                text = '{} {}'.format(user.get('firstname'), user['lastname'])
+            if user.lastname.data:
+                text = '{} {}'.format(user.firstname.data, user.lastname.data)
             else:
-                text = user.get('firstname')
-            results.append((user['uuid'], text))
+                text = user.firstname.data
+            results.append((user.uuid.data, text))
         return results
+
+    def _map_form_to_resources(self, form, form_id=None):
+        resource = super(VoicemailView, self)._map_form_to_resources(form, form_id)
+        if form.user_uuid.data and form.user_uuid.data != 'None':
+            resource['users'] = [{'uuid': form.user_uuid.data}]
+        else:
+            resource['users'] = []
+        return resource
 
     def _map_resources_to_form_errors(self, form, resources):
         form.populate_errors(resources.get('voicemail', {}))

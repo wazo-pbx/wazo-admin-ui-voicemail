@@ -10,41 +10,24 @@ class VoicemailService(BaseConfdService):
 
     resource_confd = 'voicemails'
 
-    def create(self, resource):
-        voicemail = resource
-        user = voicemail.get('users')
-
+    def create(self, voicemail):
         voicemail = confd.voicemails.create(voicemail)
+        for user in voicemail['users']:
+            confd.voicemails(voicemail).add_user(user['uuid'])
 
-        if user:
-            self.add_voicemail_to_user(voicemail.get('id'), user)
-
-    def update(self, resource):
-        voicemail = resource
-        user = voicemail.get('users')
-
-        if user:
-            voicemail_id = voicemail.get('id')
-            confd.voicemails.relations(voicemail_id).remove_users()
-            self.add_voicemail_to_user(voicemail_id, user)
+    def update(self, voicemail):
+        confd.voicemails(voicemail).remove_users()
+        for user in voicemail['users']:
+            confd.voicemails(voicemail).add_user(user['uuid'])
 
         confd.voicemails.update(voicemail)
 
     def delete(self, id):
         voicemail = confd.voicemails.get(id)
-        users = voicemail.get('users')
-
-        if users:
-            for user in users:
-                self.delete_voicemail_to_user(id, user.get('uuid'))
+        for user in voicemail['users']:
+            confd.voicemails(voicemail).remove_user(user['uuid'])
 
         confd.voicemails.delete(voicemail)
 
     def get_users(self):
         return confd.users.list()
-
-    def add_voicemail_to_user(self, voicemail_id, user_uuid):
-        return confd.voicemails.relations(voicemail_id).add_user(user_uuid)
-
-    def delete_voicemail_to_user(self, voicemail_id, user_uuid):
-        return confd.voicemails.relations(voicemail_id).remove_user(user_uuid)

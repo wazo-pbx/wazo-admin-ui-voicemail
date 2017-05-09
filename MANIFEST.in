@@ -1,2 +1,2 @@
-recursive-include voicemail/templates *
-recursive-include voicemail/static *
+recursive-include wazo_plugind_admin_ui_voicemail_official/templates *
+recursive-include wazo_plugind_admin_ui_voicemail_official/static *

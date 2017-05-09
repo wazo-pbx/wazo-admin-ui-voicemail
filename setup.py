@@ -23,7 +23,7 @@ setup(
 
     entry_points={
         'wazo_admin_ui.plugins': [
-            'voicemail = voicemail.plugin:Plugin',
+            'voicemail = wazo_plugind_admin_ui_voicemail_official.plugin:Plugin',
         ]
     }
 )

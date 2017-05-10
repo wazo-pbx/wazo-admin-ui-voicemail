@@ -17,7 +17,7 @@ case "$1" in
         ;;
 
     uninstall)
-        rm -f /etc/wazo-admin-ui/conf.d/voicemail.yml
+        rm -f /etc/wazo-admin-ui/conf.d/50-wazo-plugin-voicemail.yml
         systemctl restart wazo-admin-ui
         ;;
 

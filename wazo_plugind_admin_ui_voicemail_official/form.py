@@ -25,7 +25,7 @@ class UserForm(BaseForm):
 
 class VoicemailForm(BaseForm):
     name = StringField('Name', [InputRequired(), Length(max=80)])
-    context = StringField(default='default')
+    context = SelectField('Context', [InputRequired()], choices=[])
     number = StringField('Number', [InputRequired(), Length(max=40), Regexp(r'^[0-9]+$')])
     email = EmailField('Email', validators=[Length(max=80)])
     password = StringField('Password', [Length(max=80), Regexp(r'^[0-9]+$')], render_kw={'type': 'password',

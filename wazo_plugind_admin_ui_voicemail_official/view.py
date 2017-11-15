@@ -26,7 +26,7 @@ class VoicemailView(BaseView):
         return form
 
     def _populate_form(self, form):
-        form.user_uuid.choices = self._build_setd_choices_users(form.users)
+        form.user_uuid.choices = self._build_set_choices_users(form.users)
         form.context.choices = self._build_set_choices_context(form.context)
         return form
 

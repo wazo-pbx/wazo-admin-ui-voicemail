@@ -26,16 +26,16 @@ class VoicemailView(BaseView):
         return form
 
     def _populate_form(self, form):
-        form.user_uuid.choices = self._build_setted_choices_users(form.users)
-        form.context.choices = self._build_setted_choices_context(form.context)
+        form.user_uuid.choices = self._build_setd_choices_users(form.users)
+        form.context.choices = self._build_set_choices_context(form.context)
         return form
 
-    def _build_setted_choices_context(self, context):
+    def _build_set_choices_context(self, context):
         if not context.data or context.data == 'None':
             return []
         return [(context.data, context.data)]
 
-    def _build_setted_choices_users(self, users):
+    def _build_set_choices_users(self, users):
         results = []
         for user in users:
             if user.lastname.data:

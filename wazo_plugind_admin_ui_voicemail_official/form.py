@@ -59,7 +59,7 @@ class VoicemailForm(BaseForm):
 
 
 class VoicemailDestinationForm(BaseForm):
-    setted_value_template = '{voicemail_name}'
+    set_value_template = '{voicemail_name}'
 
     voicemail_id = SelectField('Voicemail', [InputRequired()], choices=[])
     greeting = SelectField('Greeting', choices=[('busy', 'Busy'), ('unavailable', 'Unavailable')])

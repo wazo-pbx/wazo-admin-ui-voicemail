@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0+
 
@@ -60,7 +59,7 @@ class VoicemailForm(BaseForm):
 
 
 class VoicemailDestinationForm(BaseForm):
-    setted_value_template = u'{voicemail_name}'
+    set_value_template = '{voicemail_name}'
 
     voicemail_id = SelectField('Voicemail', [InputRequired()], choices=[])
     greeting = SelectField('Greeting', choices=[('busy', 'Busy'), ('unavailable', 'Unavailable')])

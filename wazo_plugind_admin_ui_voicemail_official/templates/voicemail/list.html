@@ -8,20 +8,15 @@
   <section class="content">
     {% call build_list_containers('Voicemails', 'envelope') %}
       {% call build_list_table() %}
-        {% call build_list_table_headers() %}
+        {% call build_list_table_headers(get=url_for('.VoicemailView:get', id=''), delete=url_for('.VoicemailView:delete', id='')) %}
           <th>Name</th>
           <th>Number</th>
           <th>Email</th>
-          {{ add_list_table_header_action() }}
         {% endcall %}
         {% call(voicemail) build_list_table_rows(resource_list['items']) %}
           <td>{{ voicemail.name }}</td>
           <td>{{ voicemail.number }}</td>
           <td>{{ voicemail.email or '-' }}</td>
-          <td>
-            {{ add_edit_button(href=url_for('.VoicemailView:get', id=voicemail.id)) }}
-            {{ add_delete_button(href=url_for('.VoicemailView:delete', id=voicemail.id)) }}
-          </td>
         {% endcall %}
       {% endcall %}
     {% endcall %}

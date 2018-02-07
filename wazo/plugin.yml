@@ -1,3 +1,4 @@
+plugin_format_version: 2
 name: admin-ui-voicemail
 namespace: official
 version: 1.1.0-2
@@ -5,6 +6,5 @@ author: Wazo Team
 display_name: Voicemail
 min_wazo_version: 18.01
 tags:
-  - beta
   - application
 homepage: https://github.com/wazo-pbx/wazo-admin-ui-voicemail

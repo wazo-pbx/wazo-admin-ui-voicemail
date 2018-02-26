@@ -1,7 +1,8 @@
-# Copyright 2017 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2017-2018 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0+
 
 from flask import jsonify, request
+from flask_babel import lazy_gettext as l_
 from flask_menu.classy import classy_menu_item
 
 from wazo_admin_ui.helpers.classful import BaseView, LoginRequiredView
@@ -11,11 +12,10 @@ from .form import VoicemailForm
 
 
 class VoicemailView(BaseView):
-
     form = VoicemailForm
     resource = 'voicemail'
 
-    @classy_menu_item('.voicemails', 'Voicemails', order=4, icon="envelope")
+    @classy_menu_item('.voicemails', l_('Voicemails'), order=4, icon="envelope")
     def index(self):
         return super(VoicemailView, self).index()
 

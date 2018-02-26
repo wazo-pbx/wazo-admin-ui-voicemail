@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content_header %}
-  {{ build_breadcrumb('Voicemail', '', 'envelope', ['List']) }}
+  {{ build_breadcrumb(_('Voicemail'), '', 'envelope', [_('List')]) }}
 {% endblock %}
 
 {% block content %}
   <section class="content">
-    {% call build_list_containers('Voicemails', 'envelope') %}
+    {% call build_list_containers(_('Voicemails'), 'envelope') %}
       {% call build_list_table() %}
         {% call build_list_table_headers(get=url_for('.VoicemailView:get', id=''), delete=url_for('.VoicemailView:delete', id='')) %}
-          <th>Name</th>
-          <th>Number</th>
-          <th>Email</th>
+          <th>{{ _('Name') }}</th>
+          <th>{{ _('Number') }}</th>
+          <th>{{ _('Email') }}</th>
         {% endcall %}
         {% call(voicemail) build_list_table_rows(resource_list['items']) %}
           <td>{{ voicemail.name }}</td>
@@ -21,9 +21,9 @@
       {% endcall %}
     {% endcall %}
 
-    {% call build_hidden_add_containers('Add Voicemail') %}
+    {% call build_hidden_add_containers(_('Add Voicemail')) %}
       {% call build_form() %}
-        {% call add_default_fields(form=form, submit_value="Add") %}
+        {% call add_default_fields(form=form, submit_value=_('Add')) %}
           {{ render_field(form.name) }}
           {{ render_field(form.context,
                           data_listing_href=url_for(listing_urls['context_by_type'], type_='internal')) }}

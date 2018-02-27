@@ -31,25 +31,29 @@ class VoicemailForm(BaseForm):
     email = EmailField(l_('Email'), validators=[Length(max=80)])
     password = StringField(l_('Password'), [Length(max=80), Regexp(r'^[0-9]+$')], render_kw={'type': 'password',
                                                                                              'data_toggle': 'password'})
-    timezone = SelectField(l_('Timezone'),
-                           validators=[InputRequired()],
-                           choices=[
-                               ('na-newfoundland', 'America/St_Johns'),
-                               ('na-atlantic', 'America/Halifax'),
-                               ('na-eastern', 'America/New_York'),
-                               ('na-central', 'America/Chicago'),
-                               ('na-mountain', 'America/Denver'),
-                               ('na-pacific', 'America/Los_Angeles'),
-                               ('na-alaska', 'America/Anchorage'),
-                               ('eu-fr', 'Europe/Paris')
-                           ])
-    language = SelectField(l_('Language'),
-                           validators=[InputRequired()],
-                           choices=[
-                               ('fr_FR', l_('French')),
-                               ('fr_CA', l_('French Canadian')),
-                               ('en_US', l_('English')),
-                           ])
+    timezone = SelectField(
+        l_('Timezone'),
+        validators=[InputRequired()],
+        choices=[
+            ('na-newfoundland', 'America/St_Johns'),
+            ('na-atlantic', 'America/Halifax'),
+            ('na-eastern', 'America/New_York'),
+            ('na-central', 'America/Chicago'),
+            ('na-mountain', 'America/Denver'),
+            ('na-pacific', 'America/Los_Angeles'),
+            ('na-alaska', 'America/Anchorage'),
+            ('eu-fr', 'Europe/Paris')
+        ]
+    )
+    language = SelectField(
+        l_('Language'),
+        validators=[InputRequired()],
+        choices=[
+            ('fr_FR', l_('French')),
+            ('fr_CA', l_('French Canadian')),
+            ('en_US', l_('English')),
+        ]
+    )
     users = FieldList(FormField(UserForm))
     user_uuid = SelectField(l_('Users'), choices=[])
     max_messages = IntegerField(l_('Maximum messages'), [NumberRange(min=0)])

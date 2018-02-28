@@ -7,3 +7,4 @@ min_wazo_version: 18.02
 tags:
   - application
 homepage: https://github.com/wazo-pbx/wazo-admin-ui-voicemail
+icon: envelope

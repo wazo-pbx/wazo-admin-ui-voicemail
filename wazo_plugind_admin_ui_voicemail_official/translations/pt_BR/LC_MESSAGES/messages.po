@@ -4,12 +4,15 @@
 # wazo_admin_ui_voicemail project.
 # Wazo Dev Team <dev@wazo.community>, 2018.
 # 
+# Translators:
+# Roberto Xavier dos Santos <rxsantos@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: wazo_admin_ui_voicemail 0.1\n"
 "Report-Msgid-Bugs-To: 'dev@wazo.community'\n"
 "POT-Creation-Date: 2018-02-26 14:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Roberto Xavier dos Santos <rxsantos@gmail.com>, 2018\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/wazo/teams/69545/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -21,116 +24,116 @@ msgstr ""
 #: wazo_plugind_admin_ui_voicemail_official/form.py:28
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:12
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:29
 msgid "Context"
-msgstr ""
+msgstr "Contexto"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:30
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:13
 msgid "Number"
-msgstr ""
+msgstr "Número"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:31
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:14
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:32
 msgid "Password"
-msgstr ""
+msgstr "Senha"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:34
 msgid "Timezone"
-msgstr ""
+msgstr "Fuso horário"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:46
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:49
 msgid "French"
-msgstr ""
+msgstr "Francês"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:50
 msgid "French Canadian"
-msgstr ""
+msgstr "Francês Canadense"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:51
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:54
 msgid "Users"
-msgstr ""
+msgstr "Usuários"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:55
 msgid "Maximum messages"
-msgstr ""
+msgstr "Máximo de mensagens"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:56
 msgid "Ask for password"
-msgstr ""
+msgstr "Perguntar senha"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:57
 msgid "Attach audio"
-msgstr ""
+msgstr "Anexar áudio"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:58
 msgid "Delete message after notification"
-msgstr ""
+msgstr "Deletar mensagem após notificação"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:59
 msgid "Activated"
-msgstr ""
+msgstr "Ativado"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:60
 msgid "Submit"
-msgstr ""
+msgstr "Submeter"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:66
 #: wazo_plugind_admin_ui_voicemail_official/plugin.py:29
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/edit.html:9
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:4
 msgid "Voicemail"
-msgstr ""
+msgstr "Correio de Voz"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:67
 msgid "Greeting"
-msgstr ""
+msgstr "Saudação"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:67
 msgid "Busy"
-msgstr ""
+msgstr "Ocupado"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:67
 msgid "Unavailable"
-msgstr ""
+msgstr "Indisponível"
 
 #: wazo_plugind_admin_ui_voicemail_official/form.py:68
 msgid "Skip instructions"
-msgstr ""
+msgstr "Pular instruções"
 
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/edit.html:4
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:9
 #: wazo_plugind_admin_ui_voicemail_official/view.py:18
 msgid "Voicemails"
-msgstr ""
+msgstr "Correios de Voz"
 
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/edit.html:4
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:4
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/edit.html:11
 msgid "Update"
-msgstr ""
+msgstr "Atualizar"
 
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:24
 msgid "Add Voicemail"
-msgstr ""
+msgstr "Adicionar Correio de Voz"
 
 #: wazo_plugind_admin_ui_voicemail_official/templates/voicemail/list.html:26
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
